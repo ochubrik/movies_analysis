@@ -1,12 +1,14 @@
 def movies_filter(movies):
     return movies.dropDuplicates(['MovieID']).filter(movies.MovieID.isNotNull())
 
+
 def ratings_filter(ratings):
     return ratings.filter(
         ratings.UserID.isNotNull() &
         ratings.MovieID.isNotNull() &
         ratings.Rating.between(1, 5)
     )
+
 
 def users_filter(users):
     valid_genders = ['M', 'F']
