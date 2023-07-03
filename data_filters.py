@@ -1,8 +1,11 @@
-def movies_filter(movies):
+from pyspark.sql import dataframe
+
+
+def movies_filter(movies: dataframe):
     return movies.dropDuplicates(['MovieID']).filter(movies.MovieID.isNotNull())
 
 
-def ratings_filter(ratings):
+def ratings_filter(ratings: dataframe):
     return ratings.filter(
         ratings.UserID.isNotNull() &
         ratings.MovieID.isNotNull() &
@@ -10,7 +13,7 @@ def ratings_filter(ratings):
     )
 
 
-def users_filter(users):
+def users_filter(users: dataframe):
     valid_genders = ['M', 'F']
     valid_ages = [1, 18, 25, 35, 45, 50, 56]
     valid_occupations = list(range(21))
